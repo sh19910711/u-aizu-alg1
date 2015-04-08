@@ -23,6 +23,32 @@ char to_cd_char(int cd) {
   return cd == 10 ? 'X' : ('0' + cd);
 }
 
+void to_isbn(char* isbn) {
+  char buf[256];
+  char* p;
+  char* t;
+  int i;
+
+  p = isbn;
+  t = buf;
+  i = 0;
+  while ( *p != '\0' ) {
+    if ( isdigit(*p) ) {
+      if ( i == 1 || i == 3 ) {
+        *t = '-';
+        t ++;
+      }
+      *t = *p;
+      t ++;
+      i ++;
+    }
+    p ++;
+  }
+  *t = '\0';
+
+  strcpy(isbn, buf);
+}
+
 int main() {
   char isbn[LENGTH];
   int s;
@@ -42,6 +68,7 @@ int main() {
       }
     }
     cd = s % 11;
+    to_isbn(isbn);
     printf("ISBN => %s-%c\n", isbn, to_cd_char(cd));
     break;
   }
