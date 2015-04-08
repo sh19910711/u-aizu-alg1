@@ -5,52 +5,57 @@
 #define NONE -1
 #define N 3
 
-int A[N*N];
+int A[N * N];
 
-/* random_digit() returns number of range 1-9 */
-int random_digit() {
-  return rand() % 10;
+int check_sum( int sum ) {
+  return sum * 2 == N * N * N + N;
 }
 
 int check_table( int T[N][N] ) {
   int i;
   int j;
   int s;
+
   /* rows */
   for ( i = 0; i < N; i ++ ) {
     s = 0;
     for ( j = 0; j < N; j ++ ) {
       s += T[i][j];
     }
-    if ( s * 2 != N * N * N + N ) {
+    if ( ! check_sum(s) ) {
       return 0;
     }
   }
+
   /* cols */
   for ( i = 0; i < N; i ++ ) {
     s = 0;
     for ( j = 0; j < N; j ++ ) {
       s += T[j][i];
     }
-    if ( s * 2 != N * N * N + N ) {
+    if ( ! check_sum(s) ) {
       return 0;
     }
   }
-  /* diags */
+
+  /* diags.1 */
+  s = 0;
   for ( i = 0; i < N; i ++ ) {
-    s = 0;
     s += T[i][i];
-    if ( s * 2 != N * N * N + N ) {
-      return 0;
-    }
   }
+  if ( ! check_sum(s) ) {
+    return 0;
+  }
+
+  /* diags.2 */
+  s = 0;
   for ( i = 0; i < N; i ++ ) {
-    s = 0;
     s += T[N - i - 1][N - i - 1];
-    if ( s * 2 != N * N * N + N ) {
-      return 0;
-    }
   }
+  if ( ! check_sum(s) ) {
+    return 0;
+  }
+
   return 1;
 }
 
@@ -85,7 +90,7 @@ void shuffle_list() {
   int i;
   int s;
   int t;
-  for ( i = 0; i < 2; i ++ ) {
+  for ( i = 0; i < 10; i ++ ) {
     s = rand() % (N * N);
     t = rand() % (N * N);
     swap(&A[s], &A[t]);
