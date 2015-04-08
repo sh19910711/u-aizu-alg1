@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# sync all
+
+bindir=`dirname $0`
+root=`dirname $bindir`
+
+pushd $root
+tar cvzf tmp/archive.tar.gz ex*/s1190235-*.c
+popd
