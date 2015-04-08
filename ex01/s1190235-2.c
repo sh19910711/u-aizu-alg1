@@ -1,12 +1,22 @@
 #include <stdio.h>
 #include <string.h>
 
+#define LENGTH 256
+
 int input(char* s) {
+  char* p;
   printf("Input ISBN:  ");
-  if ( scanf("%s", s) != EOF ) {
-    return 1;
+  if ( fgets(s, LENGTH, stdin) == NULL ) {
+    return 0;
   }
-  return 0;
+  p = s;
+  while ( *p != '\0' ) {
+    if ( *p == '\n' ) {
+      *p = '\0';
+    }
+    p ++;
+  }
+  return 1;
 }
 
 char to_cd_char(int cd) {
@@ -14,7 +24,7 @@ char to_cd_char(int cd) {
 }
 
 int main() {
-  char isbn[256];
+  char isbn[LENGTH];
   int s;
   int i;
   int k;
