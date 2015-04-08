@@ -23,7 +23,9 @@ char to_cd_char(int cd) {
   return cd == 10 ? 'X' : ('0' + cd);
 }
 
-void to_isbn(char* isbn) {
+/* "4 0 8 8 7 3 1 0 4" => "4-08-873104" */
+/* "4-08-873104" => "4-08-873104" */
+void to_isbn_format(char* isbn) {
   char buf[256];
   char* p;
   char* t;
@@ -68,7 +70,7 @@ int main() {
       }
     }
     cd = s % 11;
-    to_isbn(isbn);
+    to_isbn_format(isbn);
     printf("ISBN => %s-%c\n", isbn, to_cd_char(cd));
     break;
   }
