@@ -1,3 +1,4 @@
 cmake_minimum_required(VERSION 2.8)
 project(/home/dev-snippet/workspace/u-aizu-alg1/bin/copy)
 add_executable(s1190235-0 s1190235-0.c)
+add_executable(s1190235-1 s1190235-1.c)
