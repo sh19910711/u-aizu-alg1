@@ -17,7 +17,7 @@ bindir=`dirname $0`
 root=`dirname $bindir`
 
 echo copy: CMakeLists.txt
-erb p=$0 $root/CMakeLists.txt.erb > $destdir/CMakeLists.txt
+erb p=`basename $destdir` $root/CMakeLists.txt.erb > $destdir/CMakeLists.txt
 
 echo copy: s1190235-0.c
 cp $root/s1190235-0.c $destdir/
