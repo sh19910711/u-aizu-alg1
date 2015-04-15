@@ -34,34 +34,10 @@ int main(){
   listprint();
   printf("\n");
 
-  /* 問題２ */
-  printf("=> exchange(1,2)\n");
-  if( exchange(1,2)==NULL){
-    printf("Cannot exchange\n");
-  }
-  listprint();
-  printf("=> exchange(1,2)\n");
-  if( exchange(1,2)==NULL){
-    printf("Cannot exchange\n");
-  }
-  listprint();
-
-  printf("=> exchange(4,7)\n");
-  if( exchange(4,7)==NULL){
-    printf("Cannot exchange\n");
-  }
-  listprint();
-  printf("=> exchange(4,7)\n");
-  if( exchange(4,7)==NULL){
-    printf("Cannot exchange\n");
-  }
-  listprint();
-  printf("\n");
-
   /* 問題３ */
-  /* printf("=> reverse()\n"); */
-  /* reverse();                */
-  /* listprint();              */
+  printf("=> reverse()\n");
+  reverse();
+  listprint();
 
   return 0;
 }
