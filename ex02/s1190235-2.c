@@ -20,21 +20,21 @@ NodePointer head, tail;
 int main(){
   int i;
 
-  /* �ꥹ�Ȥ����� */
+  /* リストを初期化 */
   listinitialize();
 
-  /* �ǡ����� 9 ���� 1 �ޤǥꥹ�Ȥ������ */
+  /* データを 9 から 1 までリストに入れる */
   for(i=9; i>=1; i--) {
     if( insert(i)==NULL ){
       printf("Data %d is already on the list\n",i);
     }
   }
 
-  /* �ꥹ�Ȥ�ɽ�� */
+  /* リストを表示 */
   listprint();
   printf("\n");
 
-  /* ���ꣲ */
+  /* 問題２ */
   printf("=> exchange(1,2)\n");
   if( exchange(1,2)==NULL){
     printf("Cannot exchange\n");
@@ -58,7 +58,7 @@ int main(){
   listprint();
   printf("\n");
 
-  /* ���ꣳ */
+  /* 問題３ */
   /* printf("=> reverse()\n"); */
   /* reverse();                */
   /* listprint();              */
@@ -67,8 +67,8 @@ int main(){
 }
 
 /*
- * �ꥹ�Ȥν����
- * head �� tail ���äơ��Ҥ��롣
+ * リストの初期化
+ * head と tail を作って、繋げる。
  */
 void listinitialize(void){
   head = malloc(sizeof(struct node));
@@ -79,20 +79,20 @@ void listinitialize(void){
 }
 
 /*
- * �������Ϥ��줿 key ��Ʊ���ͤΥΡ��ɤ����뤫��Ĵ�١�
- * ¸�ߤ��ʤ���С�key ���ͤ˻��ĥΡ��ɤ��ä� head �μ��˷Ҥ���
- * ���ΥΡ��ɤؤΥݥ��󥿤��֤���
- * ���Ǥ�¸�ߤ���ʤ�С��ꥹ�ȤˤϷҤ�����NULL ���֤���
+ * 引数で渡された key と同じ値のノードがあるかを調べ、
+ * 存在しなければ、key を値に持つノードを作って head の次に繋げ、
+ * そのノードへのポインタを返す。
+ * すでに存在するならば、リストには繋げず、NULL を返す。
  */
 NodePointer insert(int key){
   NodePointer x;
 
   if(finditem(key) == NULL){
-    /* key ���ͤ˻��ĥΡ��ɤ��� */
+    /* key を値に持つノードを作る */
     x = malloc(sizeof(struct node));
     x->key = key;
 
-    /* head �μ��˷Ҥ��� */
+    /* head の次に繋げる */
     x->next = head->next;
     head->next = x;
     return x;
@@ -101,28 +101,28 @@ NodePointer insert(int key){
 }
 
 /*
- * �������Ϥ��줿 key ��Ʊ���ͤΥΡ��ɤ����뤫��Ĵ�١�
- * ¸�ߤ���ʤ�С����ΥΡ��ɤ������롣
- * ¸�ߤ��ʤ���С��ꥹ�Ȥ����Ϥ��ʤ���
- * �֤��ͤ� finditem(key) ��Ʊ���ͤǤ��롣
+ * 引数で渡された key と同じ値のノードがあるかを調べ、
+ * 存在するならば、そのノードを削除する。
+ * 存在しなければ、リストの操作はしない。
+ * 返り値は finditem(key) と同じ値である。
  */
 NodePointer delete(int key){
   NodePointer x, y;
 
   x = finditem(key);
   if(x != NULL){
-    /* �������Ρ��ɤ������Ҥ������� */
+    /* 削除するノードの前後を繋ぎ換える */
     y = x->next;
     x->next = y->next;
 
-    /* �Ρ��ɤ������� */
+    /* ノードを削除する */
     free(y);
   }
   return x;
 }
 
 /*
- * head ���� tail �ޤǤΥΡ��ɤ���(key)��ɽ�����롣
+ * head から tail までのノードの値(key)を表示する。
  */
 void listprint(void){
   NodePointer n;
@@ -137,9 +137,9 @@ void listprint(void){
 }
 
 /*
- * v ��Ʊ���ͤ���ĥΡ��ɤ�õ����
- * ���Ĥ���С����ΥΡ��ɤΤҤȤļ����ΥΡ��ɤؤΥݥ��󥿤��֤���
- * ���Ĥ���ʤ���С�NULL ���֤���
+ * v と同じ値を持つノードを探す。
+ * 見つかれば、そのノードのひとつ手前のノードへのポインタを返す。
+ * 見つからなければ、NULL を返す。
  */
 NodePointer finditem(int v){
   NodePointer x, y;
@@ -159,10 +159,10 @@ NodePointer finditem(int v){
 }
 
 /*
- * v1 ��Ʊ���ͤ����äƤ���Ρ��ɤ� v2 ��Ʊ���ͤ����äƤ���Ρ��ɤ�
- * �򴹤��롣
- * �򴹤Ǥ������ϡ�v1 ��Ʊ���ͤ����äƤ���Ρ��ɤؤΥݥ��󥿤��֤���
- * �򴹤Ǥ��ʤ����ϡ�NULL ���֤���
+ * v1 と同じ値が入っているノードと v2 と同じ値が入っているノードを
+ * 交換する。
+ * 交換できた場合は、v1 と同じ値が入っているノードへのポインタを返す。
+ * 交換できない場合は、NULL を返す。
  */
 NodePointer exchange(int v1, int v2){
   NodePointer p1, p2;
@@ -174,11 +174,11 @@ NodePointer exchange(int v1, int v2){
     return NULL;
   }
 
-  if( /* p2 �μ��� p1 �ʤ� */ ){
-    /* �ݥ��� p1 �� p2 �������ؤ��� */
+  if( /* p2 の次が p1 なら */ ){
+    /* ポインタ p1 と p2 を入れ替える */
   }
 
-  if( /* p1 �μ��� p2 �ʤ� */ ){
+  if( /* p1 の次が p2 なら */ ){
 
   }else{
 
@@ -188,7 +188,7 @@ NodePointer exchange(int v1, int v2){
 }
 
 /*
- * �ꥹ�Ȥ�ս�˷Ҥ������롣
+ * リストを逆順に繋ぎ換える。
  */
 void reverse(void){
 
