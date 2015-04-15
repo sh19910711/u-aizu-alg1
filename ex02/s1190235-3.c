@@ -150,9 +150,6 @@ NodePointer exchange(int v1, int v2){
     return NULL;
   }
 
-  // print(p1);
-  // print(p2);
-  // printf("%d, %d\n", p2->next == p1, p1->next == p2);
   if( p2->next == p1 /* p2 の次が p1 なら */ ){
     p4 = p1->next->next;
     p2->next = p1->next;
@@ -180,5 +177,19 @@ NodePointer exchange(int v1, int v2){
  * リストを逆順に繋ぎ換える。
  */
 void reverse(void){
+  NodePointer cur;
+  NodePointer prev;
+  NodePointer next;
 
+  /* reverse */
+  cur = head;
+  prev = tail;
+  while ( cur != tail ) {
+    next = cur->next;
+    cur->next = prev;
+    prev  = cur;
+    cur   = next;
+  }
+  printf("cur = %d, prev = %d\n", cur->key, prev->key);
+  head = prev;
 }
