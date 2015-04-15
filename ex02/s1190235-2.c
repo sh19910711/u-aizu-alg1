@@ -174,14 +174,27 @@ NodePointer exchange(int v1, int v2){
     return NULL;
   }
 
-  if( /* p2 の次が p1 なら */ ){
-    /* ポインタ p1 と p2 を入れ替える */
-  }
-
-  if( /* p1 の次が p2 なら */ ){
-
-  }else{
-
+  // print(p1);
+  // print(p2);
+  // printf("%d, %d\n", p2->next == p1, p1->next == p2);
+  if( p2->next == p1 /* p2 の次が p1 なら */ ){
+    p4 = p1->next->next;
+    p2->next = p1->next;
+    p1->next->next = p1;
+    p1->next = p4;
+  } else if( p1->next == p2 /* p1 の次が p2 なら */ ){
+    p4 = p2->next->next;
+    p1->next = p2->next;
+    p2->next->next = p2;
+    p2->next = p4;
+  } else {
+    p3 = p1->next;
+    p4 = p1->next->next;
+    p5 = p2->next->next;
+    p1->next = p2->next;
+    p2->next->next = p4;
+    p2->next = p3;
+    p3->next = p5;
   }
 
   return p1;
