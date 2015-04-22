@@ -22,3 +22,6 @@ erb p=`basename $destdir` $root/CMakeLists.txt.erb > $destdir/CMakeLists.txt
 echo copy: s1190235-0.c
 cp $root/s1190235-0.c $destdir/
 
+echo copy: s1190235-0_test.cpp
+cp $root/s1190235-0_test.cpp $destdir/
+
