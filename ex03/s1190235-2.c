@@ -27,6 +27,19 @@ char stack_pop() {
   return stack[-- stack_pointer];
 }
 
+void stack_print() {
+  int i;
+  for ( i = 0; i < stack_pointer; ++ i ) {
+    printf("%d", stack[i]);
+    if ( i + 1 < stack_pointer ) {
+      printf(" ");
+    } else {
+      printf("\n");
+    }
+  }
+  printf("\n");
+}
+
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
   return 0;
