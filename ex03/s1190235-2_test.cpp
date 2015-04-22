@@ -19,3 +19,7 @@ TEST(EvalTest, OneTimesTwo) {
   ASSERT_EQ(eval("12*"), 2);
 }
 
+TEST(EvalTest, ExampleInput) {
+  ASSERT_EQ(eval("12+34+*"), 21);
+}
+
