@@ -6,8 +6,30 @@
 /* 文字処理するごとにスタックの内容を表示 */
 /* 入力データ中の数字はすべて 1 桁の数として処理して良い */
 
+#define SIZE (10000 + 11)
+
+char stack[SIZE];
+int stack_pointer;
+
+int stack_empty() {
+  return stack_pointer == 0;
+}
+
+void stack_init() {
+  stack_pointer = 0;
+}
+
+void stack_push(char c) {
+  stack[stack_pointer ++] = c;
+}
+
+char stack_pop() {
+  return stack[-- stack_pointer];
+}
+
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
   return 0;
 }
 #endif
+
