@@ -74,6 +74,15 @@ char stack_pop() {
 }
 
 void stack_print() {
+  struct Node* p = head->next;
+  while ( p != tail ) {
+    printf("%d", p->value);
+    if ( p->next != tail ) {
+      printf(" ");
+    }
+    p = p->next;
+  }
+  printf("\n");
 }
 
 void eval_print() {
