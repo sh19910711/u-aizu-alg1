@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(ex03)
 add_executable(s1190235-0 s1190235-0.c)
+add_executable(s1190235-2 s1190235-2.c)
 
 # enable gtest
 find_package(GTest)
