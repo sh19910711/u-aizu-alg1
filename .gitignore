@@ -1,2 +1,4 @@
 build/
 tmp/
+Makefile
+cmake_install.cmake
