@@ -22,6 +22,9 @@ void stack_init() {
   stack_pointer = 0;
 }
 
+void stack_finalize() {
+}
+
 void stack_push(char c) {
   stack[stack_pointer ++] = c;
 }
@@ -54,11 +57,13 @@ int to_int(char c) {
 }
 
 int eval(char* s) {
+  int res;
   int i;
   int len;
   int a;
   int b;
 
+  stack_init();
   len = strlen(s);
 
   for ( i = 0; i < len; ++ i ) {
@@ -77,7 +82,10 @@ int eval(char* s) {
     }
     eval_print();
   }
-  return stack_pop();
+
+  res = stack_pop();
+  stack_finalize();
+  return res;
 }
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
