@@ -53,7 +53,15 @@ void stack_init() {
 }
 
 void stack_finalize() {
-  free(head);
+  struct Node* cur;
+  struct Node* next;
+
+  cur = head;
+  while ( cur != tail ) {
+    next = cur->next;
+    free(cur);
+    cur = next;
+  }
   free(tail);
 }
 
