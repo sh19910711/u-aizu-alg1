@@ -12,6 +12,7 @@ TEST(StackTest, PushAndPop) {
   ASSERT_EQ(stack_pop(), '+');
   ASSERT_EQ(stack_pop(), '2');
   ASSERT_EQ(stack_pop(), '1');
+  stack_finalize();
 }
 
 TEST(EvalTest, OnePlusTwo) {
