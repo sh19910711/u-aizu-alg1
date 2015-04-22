@@ -4,3 +4,16 @@ add_executable(s1190235-0 s1190235-0.c)
 add_executable(s1190235-1 s1190235-1.c)
 add_executable(s1190235-2 s1190235-2.c)
 add_executable(s1190235-3 s1190235-3.c)
+
+# enable gtest
+find_package(GTest)
+if(GTest_FOUND)
+  include_directories(${GTEST_INCLUDE_DIRS})
+  # target: *_test.cpp
+  file(GLOB TEST_ALL *_test.cpp)
+  add_executable(run_test ${TEST_ALL})
+  target_link_libraries(run_test
+    ${GTEST_BOTH_LIBRARIES}
+    -pthread
+    )
+endif()
