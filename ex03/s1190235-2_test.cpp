@@ -10,3 +10,12 @@ TEST(StackTest, PushAndPop) {
   ASSERT_EQ(stack_pop(), '2');
   ASSERT_EQ(stack_pop(), '1');
 }
+
+TEST(EvalTest, OnePlusTwo) {
+  ASSERT_EQ(eval("12+"), 3);
+}
+
+TEST(EvalTest, OneTimesTwo) {
+  ASSERT_EQ(eval("12*"), 2);
+}
+
