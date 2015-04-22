@@ -36,8 +36,6 @@ void stack_print() {
     printf("%d", stack[i]);
     if ( i + 1 < stack_pointer ) {
       printf(" ");
-    } else {
-      printf("\n");
     }
   }
   printf("\n");
@@ -83,6 +81,10 @@ int eval(char* s) {
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
+  char buf[1024];
+  printf("Input data by Reverse Polish Notation: ");
+  scanf("%s", buf);
+  printf("Answer: %d\n", eval(buf));
   return 0;
 }
 #endif
