@@ -1,0 +1,9 @@
+Input data by Reverse Polish Notation: 
+1
+1 2
+3
+3 3
+3 3 4
+3 7
+21
+Answer: 21
