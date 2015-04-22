@@ -27,6 +27,7 @@ void stack_push(char c) {
 }
 
 char stack_pop() {
+  assert(stack_pointer > 0);
   return stack[-- stack_pointer];
 }
 
