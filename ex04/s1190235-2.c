@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 // 問題２
 // また、main() 関数でそれらの関数を呼び出し、 以下の値を計算させて表示させなさい。
@@ -58,6 +57,10 @@ int func( int x, int n ) {
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
+  printf("10! = %d\n", fact(10));
+  printf("2^0 + 2^1 + 2^2 + ... + 2^9 = %d\n", geom(10));
+  printf("fibonacci 20: %d\n", fib(20));
+  printf("f(2) = %.2f\n", (double)func(2, 5));
   return 0;
 }
 #endif
