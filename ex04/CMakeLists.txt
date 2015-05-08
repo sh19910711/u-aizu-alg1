@@ -3,7 +3,8 @@ project(ex04)
 
 file(GLOB SOURCES s1190235-*.c)
 foreach(source ${SOURCES})
-  string(REGEX MATCH "s1190235-.*$" target ${source})
+  string(REGEX MATCH "s1190235-.*$" target0 ${source})
+  string(REGEX REPLACE ".c$" "" target ${target0})
   add_executable(${target} ${source})
 endforeach(aaa)
 
