@@ -19,7 +19,7 @@ NodePointer head, tail;
 int main(){
   treeinitialize();
 
-  /* ¥Æ¥¹¥ÈÍÑ¤ÎÌÚ¤òºîÀ® */
+  /* ãƒ†ã‚¹ãƒˆç”¨ã®æœ¨ã‚’ä½œæˆ */
   head->right=makenode('+');
   head->right->left=makenode('1');
   head->right->right=makenode('*');
@@ -27,7 +27,7 @@ int main(){
   head->right->right->right=makenode('3');
 
 
-  /* ¥È¥é¥Ğ¡¼¥¹ */
+  /* ãƒˆãƒ©ãƒãƒ¼ã‚¹ */
   printf("preorder:  ");
   preorder(head->right);
   printf("\n");
@@ -51,7 +51,7 @@ void treeinitialize(void){
 }
 
 /*
- * ¥Î¡¼¥É¤òºîÀ®¤·¡¢¤½¤Î¥Î¡¼¥É¤Ø¤Î¥İ¥¤¥ó¥¿¤òÊÖ¤¹¡£
+ * ãƒãƒ¼ãƒ‰ã‚’ä½œæˆã—ã€ãã®ãƒãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
  */
 NodePointer makenode(char c){
   NodePointer x;
