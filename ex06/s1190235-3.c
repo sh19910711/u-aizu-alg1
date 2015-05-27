@@ -118,6 +118,39 @@ void postorder(NodePointer cur, char* s, int* ns) {
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
+  int i;
+  int n;
+  char in[1024];
+  char out[1024];
+  NodePointer root;
+
+  printf("Input data by Reverse Polish Notation: ");
+  scanf("%s", in);
+  root = tree_by_revpol(in);
+
+  n = 0;
+  preorder(root, out, &n);
+  printf("preorder:  ");
+  for ( i = 0; i < n; ++ i ) {
+    printf("%c ", out[i]);
+  }
+  printf("\n");
+
+  n = 0;
+  inorder(root, out, &n);
+  printf("inorder:   ");
+  for ( i = 0; i < n; ++ i ) {
+    printf("%c ", out[i]);
+  }
+  printf("\n");
+
+  n = 0;
+  postorder(root, out, &n);
+  printf("postorder: ");
+  for ( i = 0; i < n; ++ i ) {
+    printf("%c ", out[i]);
+  }
+  printf("\n");
   return 0;
 }
 #endif
