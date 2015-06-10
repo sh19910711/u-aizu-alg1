@@ -88,6 +88,8 @@ int main() {
     while ( isdigit(*p1) ) {
       *p2 = *p1;
       p1 ++;
+      p2 ++;
+      *p2 = '\0';
     }
     if ( isdigit(*buf2) ) {
       if ( sscanf(buf2, "%d", &tmp) != EOF ) {
