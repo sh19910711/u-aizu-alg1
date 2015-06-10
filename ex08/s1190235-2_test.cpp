@@ -2,7 +2,7 @@
 
 namespace {
 
-#include "./s1190235-1.c"
+#include "./s1190235-2.c"
 
   void dummy_print(int* a, int n) {
     // dummy

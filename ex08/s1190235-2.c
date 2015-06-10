@@ -1,4 +1,7 @@
 /*
+Question 2
+http://web-ext.u-aizu.ac.jp/course/alg1/ex/uk/ex08/
+
 Write a program that sorts by bubble sort, insertion sort and selection sort. The program must fulfill the following conditions:
 
 A sequence is initialized when it is declared.
@@ -7,8 +10,6 @@ The program displays both the result and sorting process.
 */
 
 #include <stdio.h>
-
-#define SIZE
 
 void swap( int* a, int* b ) {
   int tmp = *a;
@@ -58,6 +59,10 @@ void selection( int* a, int n, void print(int*, int) ) {
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
+  char buf[1024];
+  int input[1024];
+  printf("Before:  ");
+  fgets(buf, 1024, stdin);
   return 0;
 }
 #endif
