@@ -10,6 +10,8 @@ The program displays both the result and sorting process.
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 void swap( int* a, int* b ) {
   int tmp = *a;
@@ -19,7 +21,7 @@ void swap( int* a, int* b ) {
 
 void bubble( int* a, int n, void print(int*, int) ) {
   int i, j;
-  for ( i = 0; i < n; ++ i ) {
+  for ( i = 0; i < n - 1; ++ i ) {
     for ( j = n - 1; j > i; -- j ) {
       if ( a[j - 1] > a[j] ) {
         swap(a + j - 1, a + j);
@@ -45,7 +47,7 @@ void insertion( int* a, int n, void print(int*, int) ) {
 
 void selection( int* a, int n, void print(int*, int) ) {
   int i, j, good;
-  for ( i = 0; i < n; ++ i ) {
+  for ( i = 0; i < n - 1; ++ i ) {
     good = i;
     for ( j = i; j < n; ++ j ) {
       if ( a[good] > a[j] ) {
@@ -58,11 +60,59 @@ void selection( int* a, int n, void print(int*, int) ) {
 }
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
+void print(int* a, int n) {
+  int i;
+  for ( i = 0; i < n; ++ i ) {
+    printf("%d ", a[i]);
+  }
+  printf("\n");
+}
+
 int main() {
-  char buf[1024];
+  char buf1[1024]; // for input
+  char buf2[1024]; // as tmp
+  char *p1;
+  char *p2;
   int input[1024];
+  int n;
+  int tmp;
+  int sort_type;
+
+  // input numbers
   printf("Before:  ");
-  fgets(buf, 1024, stdin);
+  fgets(buf1, 1024, stdin);
+  n = 0;
+  p1 = buf1;
+  while ( *p1 != '\0' ) {
+    p2 = buf2;
+    while ( isdigit(*p1) ) {
+      *p2 = *p1;
+      p1 ++;
+    }
+    if ( isdigit(*buf2) ) {
+      if ( sscanf(buf2, "%d", &tmp) != EOF ) {
+        input[n ++] = tmp;
+      }
+    }
+    p1 ++;
+  }
+  puts("");
+
+  // input sort type
+  printf("Select a method (1:buble, 2:insertion: 3: selection) > ");
+  scanf("%d", &sort_type);
+  switch(sort_type) {
+    case 1:
+      bubble(input, n, print);
+      break;
+    case 2:
+      insertion(input, n, print);
+      break;
+    case 3:
+      selection(input, n, print);
+      break;
+  }
+
   return 0;
 }
 #endif
