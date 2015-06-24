@@ -20,7 +20,7 @@ int binary_search(int *a, int n, int key) {
 
   l = 0;
   r = n;
-  for ( i = 0; i < 100; ++ i ) {
+  while ( l <  r ) {
     m = (l + r) / 2;
 
     if ( a[m] == key ) {
@@ -30,7 +30,39 @@ int binary_search(int *a, int n, int key) {
     if ( a[m] > key ) {
       r = m;
     } else if ( a[m] < key ) {
-      l = m;
+      l = m + 1;
+    }
+  }
+
+  return NOT_FOUND;
+}
+
+int interpolation_search(int *a, int n, int key) {
+  int i;
+  int l;
+  int r;
+  int m;
+
+  l = 0;
+  r = n;
+  while ( l < r ) {
+    if ( a[r] != a[l] ) {
+      m = l + (double)(key - a[l]) / (double)(a[r] - a[l]) * (double)(r - l);
+    } else {
+      m = (l + r) / 2;
+    }
+
+    if ( m < l ) m = l;
+    if ( m >= r ) m = r - 1;
+
+    if ( a[m] == key ) {
+      return FOUND;
+    }
+
+    if ( a[m] > key ) {
+      r = m;
+    } else {
+      l = m + 1;
     }
   }
 
@@ -64,6 +96,15 @@ int main() {
   scanf("%d", &key);
 
   if ( binary_search(a, n, key) == FOUND ) {
+    puts("found.");
+  } else {
+    puts("not found.");
+  }
+
+  printf("Input key for interpolation search: ");
+  scanf("%d", &key);
+
+  if ( interpolation_search(a, n, key) == FOUND ) {
     puts("found.");
   } else {
     puts("not found.");
