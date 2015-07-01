@@ -1,20 +1,3 @@
-// Problem 2
-//
-// ex11-2-RB.c is a program which generates a red-black tree.
-// Check that a red-black tree is correctly displayed
-// (the place where * is marked is a red link).
-// Although the functions used in this program,
-//
-// void rbtreeinsert(char c);
-// NodePointer rotate(char v, NodePointer y);
-// void split(char v);
-//
-// are much complicated, understand this program as much as possible.
-//
-// Next, change this program and insert keys from A to Z into red-black tree in order.
-//
-// Check that the result is balanced compared with the usual binary tree. 
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -40,12 +23,8 @@ int main(){
 
   rbtreeinitialize();
 
-  printf("INPUT DATA:  ");
-  while( 1 ){
-    c=getchar();
-    if( c=='\n' ){
-      break;
-    }
+  printf("INPUT DATA:  A to Z\n");
+  for ( c = 'A'; c <= 'Z'; ++ c ) {
     rbtreeinsert(c);
   }
 
@@ -88,7 +67,7 @@ void rbtreeinsert(char c){
     }else{
       x=x->right;
     }
-    /* 4-¥Î¡¼¥É¤À¤Ã¤¿¤éÊ¬³ä */
+    /* 4-ãƒŽãƒ¼ãƒ‰ã ã£ãŸã‚‰åˆ†å‰² */
     if( x->left->red && x->right->red ){
       split(c);
     }
