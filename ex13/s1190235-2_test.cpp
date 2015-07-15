@@ -23,4 +23,30 @@ namespace {
     free_adj_list(adj_list);
   }
 
+  TEST(ConvertGraph, ExampleInput) {
+    FILE* fp = fopen("s1190235-2_input.txt", "r");
+    AdjacentList* adj_list = input_adj_list(fp);
+    fclose(fp);
+
+    AdjacentMatrix* adj_mat = convert_from_adj_list(adj_list);
+
+    int expected[4][4] = {
+      { 0, 0, 1, 1 },
+      { 0, 0, 0, 0 },
+      { 0, 1, 0, 1 },
+      { 0, 1, 0, 0 },
+    };
+
+    ASSERT_EQ(adj_mat->num_verticles, 4);
+    for (int i = 0; i < 4; ++ i) {
+      for (int j = 0; j < 4; ++ j) {
+        ASSERT_EQ(adj_mat->matrix[i][j], expected[i][j]);
+      }
+    }
+
+    free_adj_list(adj_list);
+    free_adj_matrix(adj_mat);
+  }
+
+
 }
