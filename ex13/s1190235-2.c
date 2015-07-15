@@ -19,13 +19,13 @@
 #include <stdlib.h>
 
 typedef struct adjacent_list_graph {
-  int num_verticles;
+  int num_vertices;
   int** edges;
   int* num_edges;
 } AdjacentList;
 
 typedef struct adjacent_matrix_graph {
-  int num_verticles;
+  int num_vertices;
   int** matrix;
 } AdjacentMatrix;
 
@@ -69,21 +69,21 @@ int** new_list(int size) {
   return self;
 }
 
-AdjacentMatrix* new_adj_matrix(int num_verticles) {
+AdjacentMatrix* new_adj_matrix(int num_vertices) {
   AdjacentMatrix* self = (AdjacentMatrix*)malloc(sizeof(AdjacentMatrix));
 
-  self->num_verticles = num_verticles;
-  self->matrix = new_table(num_verticles, num_verticles, 0);
+  self->num_vertices = num_vertices;
+  self->matrix = new_table(num_vertices, num_vertices, 0);
 
   return self;
 }
 
-AdjacentList* new_adj_list(int num_verticles) {
+AdjacentList* new_adj_list(int num_vertices) {
   AdjacentList* self = (AdjacentList*)malloc(sizeof(AdjacentList));
 
-  self->num_verticles = num_verticles;
-  self->edges = new_list(self->num_verticles);
-  self->num_edges = new_array(self->num_verticles);
+  self->num_vertices = num_vertices;
+  self->edges = new_list(self->num_vertices);
+  self->num_edges = new_array(self->num_vertices);
 
   return self;
 }
@@ -97,7 +97,7 @@ void free_table(int** table, int rows) {
 }
 
 void free_adj_matrix(AdjacentMatrix* adj_mat) {
-  free_table(adj_mat->matrix, adj_mat->num_verticles);
+  free_table(adj_mat->matrix, adj_mat->num_vertices);
   free(adj_mat);
 }
 
@@ -108,7 +108,7 @@ void free_adj_list(AdjacentList* adj_list) {
     return;
   }
 
-  for (i=0; i<adj_list->num_verticles; ++i) {
+  for (i=0; i<adj_list->num_vertices; ++i) {
     if (adj_list->edges[i]) {
       free(adj_list->edges[i]);
     }
@@ -120,16 +120,16 @@ void free_adj_list(AdjacentList* adj_list) {
 
 AdjacentList* input_adj_list(FILE* fp) {
   AdjacentList* adj_list;
-  int num_verticles;
+  int num_vertices;
   int i;
   int j;
   int num_edges;
   int tmp;
 
-  if (fscanf(fp, "%d", &num_verticles)) {
-    adj_list = new_adj_list(num_verticles);
+  if (fscanf(fp, "%d", &num_vertices)) {
+    adj_list = new_adj_list(num_vertices);
 
-    for (i = 0; i < adj_list->num_verticles; ++ i) {
+    for (i = 0; i < adj_list->num_vertices; ++ i) {
       if (fscanf(fp, "%d", adj_list->num_edges + i)) {
         adj_list->edges[i] = new_array(adj_list->num_edges[i]);
         for (j = 0; j < adj_list->num_edges[i]; ++j) {
@@ -156,8 +156,8 @@ AdjacentMatrix* convert_from_adj_list(AdjacentList* adj_list) {
   int j;
   int dest;
   
-  adj_mat = new_adj_matrix(adj_list->num_verticles);
-  for (i=0; i<adj_list->num_verticles; ++i) {
+  adj_mat = new_adj_matrix(adj_list->num_vertices);
+  for (i=0; i<adj_list->num_vertices; ++i) {
     for (j=0; j<adj_list->num_edges[i]; ++j) {
       dest = adj_list->edges[i][j];
       adj_mat->matrix[i][dest] = 1;
@@ -172,8 +172,8 @@ void print_adj_matrix(AdjacentMatrix* adj_mat) {
   int j;
 
   printf("matrix\n");
-  for (i=0; i<adj_mat->num_verticles; ++i) {
-    for (j=0; j<adj_mat->num_verticles; ++j) {
+  for (i=0; i<adj_mat->num_vertices; ++i) {
+    for (j=0; j<adj_mat->num_vertices; ++j) {
       printf("%d ", adj_mat->matrix[i][j]);
     }
     printf("\n");

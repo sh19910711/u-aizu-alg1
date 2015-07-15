@@ -39,6 +39,11 @@ namespace {
     ASSERT_EQ(d[2], 2);
     ASSERT_EQ(d[3], 5);
 
+    ASSERT_EQ(f[0], 8);
+    ASSERT_EQ(f[1], 4);
+    ASSERT_EQ(f[2], 7);
+    ASSERT_EQ(f[3], 6);
+
     free_adj_list(adj_list);
   }
 

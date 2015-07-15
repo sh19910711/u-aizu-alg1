@@ -9,7 +9,7 @@ namespace {
     AdjacentList* adj_list = input_adj_list(fp);
     fclose(fp);
 
-    ASSERT_EQ(adj_list->num_verticles, 4);
+    ASSERT_EQ(adj_list->num_vertices, 4);
     ASSERT_EQ(adj_list->num_edges[0], 2);
     ASSERT_EQ(adj_list->edges[0][0], 3);
     ASSERT_EQ(adj_list->edges[0][1], 2);
@@ -37,7 +37,7 @@ namespace {
       { 0, 1, 0, 0 },
     };
 
-    ASSERT_EQ(adj_mat->num_verticles, 4);
+    ASSERT_EQ(adj_mat->num_vertices, 4);
     for (int i = 0; i < 4; ++ i) {
       for (int j = 0; j < 4; ++ j) {
         ASSERT_EQ(adj_mat->matrix[i][j], expected[i][j]);

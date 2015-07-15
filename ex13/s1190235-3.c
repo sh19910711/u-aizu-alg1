@@ -178,6 +178,14 @@ void dfs(int cur, int* t, AdjacentList* adj_list, int* d, int* f) {
   f[cur] = *t;
 }
 
+void print_timestamps(int n, int* d, int* f) {
+  int i;
+  printf("timestamps\n");
+  for (i = 0; i < n; ++i) {
+    printf("%d: %d %d\n", i+1, d[i], f[i]);
+  }
+}
+
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
   AdjacentList* adj_list;
@@ -191,6 +199,8 @@ int main() {
   f = new_array_with_value(adj_list->num_vertices, 0);
 
   dfs(0, &t, adj_list, d, f);
+
+  print_timestamps(adj_list->num_vertices, d, f);
 
   free_adj_list(adj_list);
   return 0;
