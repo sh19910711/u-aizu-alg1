@@ -150,8 +150,26 @@ AdjacentMatrix* convert_from_adj_list(AdjacentList* adj_list) {
   return adj_mat;
 }
 
+void print_adj_matrix(AdjacentMatrix* adj_mat) {
+  int i;
+  int j;
+
+  printf("matrix\n");
+  for (i=0; i<adj_mat->num_verticles; ++i) {
+    for (j=0; j<adj_mat->num_verticles; ++j) {
+      printf("%d ", adj_mat->matrix[i][j]);
+    }
+    printf("\n");
+  }
+}
+
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
+  AdjacentList* adj_list = input_adj_list(stdin);
+  AdjacentMatrix* adj_mat = convert_from_adj_list(adj_list);
+  print_adj_matrix(adj_mat);
+  free_adj_list(adj_list);
+  free_adj_matrix(adj_mat);
   return 0;
 }
 #endif
