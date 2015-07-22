@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
 
 typedef long long Int;
@@ -32,7 +33,11 @@ void print_table(Int** t, Int r, Int c) {
   Int j;
   for (i=0;i<r;++i) {
     for (j=0;j<c;++j) {
-      printf("%lld ", t[i][j]);
+      if (t[i][j] >= LONG_MAX / 10) {
+        printf("   - ");
+      } else {
+        printf("%4lld ", t[i][j]);
+      }
     }
     puts("");
   }
@@ -47,7 +52,7 @@ Int least_count(int n, Int* a) {
   Int inf;
   Int res;
 
-  inf = LONG_LONG_MAX / 10;
+  inf = LONG_MAX / 10;
   dp = new_table(n+1, n+1);
 
   for (i=0;i<n;++i) {
@@ -59,10 +64,10 @@ Int least_count(int n, Int* a) {
     dp[i][i] = 0;
   }
 
-  for (j=0;j<n;++j) {
+  for (j=1;j<n;++j) {
     for (i=0;i+j<n;++i) {
-      for(k=i+1;k<=i+j;++k) {
-        c = dp[i][k-1] + dp[k][i+j] + a[i]*a[k]*a[i+j+1];
+      for(k=i;k<i+j;++k) {
+        c = dp[i][k] + dp[k+1][i+j] + a[i]*a[k+1]*a[i+j+1];
         if (c < dp[i][i+j]) {
           dp[i][i+j] = c;
         }
@@ -77,6 +82,16 @@ Int least_count(int n, Int* a) {
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
 int main() {
+  int n;
+  Int a[1024];
+  int i;
+  scanf("%d", &n);
+  for (i=0; i<n; ++i) {
+    scanf("%lld", a+i);
+  }
+
+  printf("the least cost = %lld\n");
+
   return 0;
 }
 #endif

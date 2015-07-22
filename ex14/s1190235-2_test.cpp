@@ -10,4 +10,10 @@ namespace {
     ASSERT_EQ(least_count(n, a), 102);
   }
 
+  TEST(LeastCount, Input1) {
+    int n = 4;
+    long long a[5] = {5, 10, 3, 12, 5};
+    ASSERT_EQ(least_count(n, a), 405);
+  }
+
 }
