@@ -1,0 +1,13 @@
+#include <gtest/gtest.h>
+
+namespace {
+
+#include "./s1190235-2.c"
+
+  TEST(LeastCount, ExampleInput) {
+    int n = 4;
+    long long a[5] = {5, 2, 6, 4, 3};
+    ASSERT_EQ(least_count(n, a), 102);
+  }
+
+}
